@@ -12,16 +12,17 @@ class Solution {
         }
         return requiredIron;
     }
+
     public static int sumDivisorCount(int number){ // 인수로 받은 정수의 약수의 개수를 반환하는 함수
-        int answer = 0;
+        int count = 0;
         for(int i = 1 ; i*i <= number ; i++){
             if(i*i == number){
-                answer += 1;
+                count += 1;
             }
             else if(number % i == 0){
-                answer += 2;
+                count += 2;
             }
         }
-        return answer;
+        return count;
     }
 }
