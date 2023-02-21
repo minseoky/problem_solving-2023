@@ -1,21 +1,18 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
     public int solution(int n) {
         int answer = 0;
-        int expo = 0;
-        while(Math.pow(3, expo+1) < n){
-            expo += 1;
+        List<Integer> tri = new ArrayList<>(); //1 3 9 27 81 ... 이미 반전된 상태로 저장
+        while(n >= 1){ // 삼진법 리스트 만들기
+            tri.add(n%3);
+            n = n / 3;
         }
-        int[] trit = new int[expo + 1];
-        for(int i = expo ; i >= 0 ; i--){
-            while(n >= Math.pow(3,i)){
-                trit[expo - i] += 1;
-                n -= Math.pow(3,i);
-            }
-        }
-        for(int i = 0 ; i < trit.length ; i++){
-            answer += trit[i] * Math.pow(3,i);
+        int mul = 1;
+        for(int i = tri.size()-1 ; i >= 0 ; i--){ // 십진법으로 변환
+            answer += tri.get(i) * mul;
+            mul *= 3;
         }
         return answer;
     }
